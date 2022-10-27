@@ -1,0 +1,6 @@
+<label *ngIf="label" class="lontara-upload-label">{{label}}</label>
+<file-upload
+    [ngModelOptions]="{standalone: true}"
+    [multiple]="false"
+    [control]="fileUploadControl">
+</file-upload>

@@ -1,0 +1,18 @@
+<div class="lontara-ui-modal-backdrop">
+    <div class="lontara-ui-modal">
+        <div class="modal-body">
+            <ng-content></ng-content>
+        </div>
+        <div class="modal-action">
+            <button *ngIf="secondaryButton" (click)="_onSecondaryButtonClick()" class="action-button" [style]="actionButtonStyle">
+                {{secondaryButtonLabel}}
+            </button>
+            <button *ngIf="primaryButton" (click)="_onPrimaryButtonClick()" class="action-button primary" [style]="actionButtonPrimaryStyle">
+                {{primaryButtonLabel}}
+            </button>
+            <button *ngIf="dangerButton" (click)="_onDangerButtonClick()" class="action-button danger" [style]="actionButtonDangerStyle">
+                {{dangerButtonLabel}}
+            </button>
+        </div>
+    </div>
+</div>

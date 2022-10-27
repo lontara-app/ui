@@ -1,0 +1,11 @@
+<div [class]="'lontara-ui-input ' + class">
+    <label *ngIf="label" class="input-label">{{label}}</label>
+    <ng-select [items]="options" 
+        [placeholder]="placeholder"
+           [bindLabel]="labelField" 
+           [bindValue]="valueField" 
+           (change)="handleChange($event)"
+        >
+    </ng-select>
+    <span *ngIf="!isValid" class="input-error" [style]="'color:' + errorColor">Value is invalid!</span>
+</div>

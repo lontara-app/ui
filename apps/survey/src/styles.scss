@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+.ng-select .ng-select-container {
+    padding: 0.5rem 1rem !important;
+    border: 1px solid #d6d8d9;
+    border-radius: 0.75rem;
+    height: auto !important;
+}
+.ng-dropdown-panel.ng-select-bottom .ng-dropdown-panel-items .ng-option:last-child,
+.ng-dropdown-panel.ng-select-bottom{
+    border-bottom-left-radius: 0.75rem !important;
+    border-bottom-right-radius: 0.75rem !important;
+}
+
+html, body {
+    font-family: Poppins, sans-serif;
+}
+body {
+    padding-top: 104px;
+}

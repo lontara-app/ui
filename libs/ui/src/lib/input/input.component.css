@@ -1,0 +1,19 @@
+.lontara-ui-input {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+.lontara-ui-input .input-field {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d6d8d9;
+    border-radius: 0.75rem;
+}
+.lontara-ui-input .input-label {
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding-bottom: 0.5rem;
+}
+.lontara-ui-input .input-error {
+    font-size: 0.75rem;
+    font-weight: 500;
+}

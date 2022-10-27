@@ -1,1 +1,42 @@
-<lontara-nx-welcome></lontara-nx-welcome>
+<lontara-navbar class="bg-gray-800 text-white fixed top-0 left-0">
+    <div left>
+        <img src="https://static.uipod.id/logo.svg" />
+    </div>
+    <div middle class="w-full">
+        <input class="mx-8 py-2 px-4 rounded-xl bg-white/50 w-full"/>
+    </div>
+    <div right class="flex flex-row items-center">
+        <div class="hidden lg:flex w-32"></div>
+        <div class="bg-primary w-8 h-8 flex items-center justify-center rounded-lg">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+        </div>
+        <div class="w-4 h-8 mr-4 border-r border-solid border-gray-500"></div>
+        <button class="rounded-lg bg-primary h-8 px-4 flex items-center justify-center text-white text-sm font-medium">
+            PROFIL
+        </button>
+    </div>
+    <div secondary-menu>
+        <div class="flex flex-row items-center space-x-2 p-0">
+            <button class="px-4 py-3 text-sm font-medium rounded-xl hover:bg-gray-50/50">BERANDA</button>
+            <button class="px-4 py-3 text-sm font-medium rounded-xl hover:bg-gray-50/50">PENAWARAN KHUSUS</button>
+        </div>
+    </div>
+    <div drawer-content>
+        <div class="text-black">TEST AJA</div>
+    </div>
+</lontara-navbar>
+<div class="my-24 mx-8 w-96">
+    <lontara-input
+    class="w-40"
+    label="TES INPUT"
+    placeholder="text...."
+     [(ngModel)]="tes"></lontara-input>
+     <lontara-select
+    class="w-40"
+    label="TES INPUT"
+    placeholder="text...."
+     [(ngModel)]="select"></lontara-select>
+     <lontara-upload></lontara-upload>
+</div>
+
+<lontara-alert></lontara-alert>
