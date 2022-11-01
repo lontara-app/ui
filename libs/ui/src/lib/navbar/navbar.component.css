@@ -1,93 +1,97 @@
 .lontara-ui-navbar {
-    width: 100vw;
-    box-shadow: 0 1px 3px rgba(28,28,28,.15);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  width: 100vw;
+  box-shadow: 0 1px 3px rgba(28, 28, 28, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .lontara-ui-navbar .navbar-container {
-    width: 100%;
-    padding: 0 1rem;
-    position: relative;
-    height: 56px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  width: 100%;
+  padding: 0 1rem;
+  position: relative;
+  height: 56px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .lontara-ui-navbar .navbar-container.secondary {
-    height: auto;
+  height: auto;
 }
 
 .lontara-ui-navbar .navbar-container .navbar-middle {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
 }
 
 .lontara-ui-navbar .navbar-container .navbar-left {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .lontara-ui-navbar .navbar-container .navbar-left .navbar-drawer-button {
-    height: 32px;
-    width: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 1rem;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
 }
 
 .lontara-ui-navbar .navbar-container .navbar-left .navbar-drawer-button svg {
-    width: 24px;
-    height: 24px;
+  width: 24px;
+  height: 24px;
 }
 
 .lontara-ui-navbar .navbar-container .navbar-left img {
-    height: 48px;
-    width: auto;
+  height: 48px;
+  width: auto;
 }
-
 
 .lontara-ui-navbar-content {
-    width: 20rem;
-    background: #fff;
-    box-shadow: 0 1px 3px rgba(28,28,28,.15);
-    position: absolute;
-    top: 42px;
-    left: 0;
-    height: 100vh;
-    z-index: 9999;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
+  width: 20rem;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(28, 28, 28, 0.15);
+  position: absolute;
+  top: 42px;
+  left: 0;
+  height: 100vh;
+  z-index: 9999;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
-
 
 @media only screen and (min-width: 1024px) {
-    .lontara-ui-navbar .navbar-container {
-        max-width: 1024px;
-        margin: 0 auto;
-        padding: 0;
-    }
-    .lontara-ui-navbar .navbar-container .navbar-left .navbar-drawer-button {
-        display: none;
-    }
+  .lontara-ui-navbar .navbar-container {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .lontara-ui-navbar .navbar-container .navbar-left .navbar-drawer-button {
+    display: none;
+  }
 }
 @media only screen and (min-width: 1280px) {
-    .lontara-ui-navbar .navbar-container {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 0;
-    }
+  .lontara-ui-navbar .navbar-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0;
+  }
 }
 @media only screen and (min-width: 1536px) {
-    .lontara-ui-navbar .navbar-container {
-        max-width: 1536px;
-        margin: 0 auto;
-        padding: 0;
-    }
+  .lontara-ui-navbar .navbar-container {
+    max-width: 1536px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .navbar-wrapper-secondary {
+    display: none;
+  }
 }

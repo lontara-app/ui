@@ -38,7 +38,11 @@
     </div>
 
     <!-- drawer sidebar -->
-    <div *ngIf="show" class="lontara-ui-navbar-content">
+    <div
+      *ngIf="show"
+      (window:resize)="onResize($event)"
+      class="lontara-ui-navbar-content"
+    >
       <ng-content select="[drawer-content]"></ng-content>
     </div>
     <!-- drawer sidebar ends here -->
@@ -48,7 +52,6 @@
   <!-- secondary navbar -->
   <div
     *ngIf="secondaryNavbar"
-    (window:resize)="onResize($event)"
     class="navbar-wrapper-secondary"
     [style]="'background:' + secondaryBg + ';color:' + secondaryColor"
   >
