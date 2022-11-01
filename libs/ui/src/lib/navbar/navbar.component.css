@@ -56,13 +56,13 @@
   background: #fff;
   box-shadow: 0 1px 3px rgba(28, 28, 28, 0.15);
   position: absolute;
-  top: 42px;
+  top: 100%;
   left: 0;
   height: 100vh;
   z-index: 9999;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  transition-duration: 550ms;
 }
 
 @media only screen and (min-width: 1024px) {
