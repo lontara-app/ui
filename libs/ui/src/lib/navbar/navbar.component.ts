@@ -10,10 +10,13 @@ import { LontaraStyleService } from '../lontara-style.service';
 })
 export class NavbarComponent implements OnInit {
   show = false;
-  constructor(private drawerService: DrawerService, private styleService: LontaraStyleService) {
+  constructor(
+    private drawerService: DrawerService,
+    private styleService: LontaraStyleService
+  ) {
     this.drawerService.onChange.subscribe((show) => {
       this.show = show;
-    })
+    });
   }
   @Input() class = '';
   @Input() enableDrawer = true;
@@ -25,23 +28,41 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {}
 
   get secondaryBg(): string | undefined {
-    return this.secondaryNavbarBg || this.styleService.getInstance().colors?.secondary?.main;
+    return (
+      this.secondaryNavbarBg ||
+      this.styleService.getInstance().colors?.secondary?.main
+    );
   }
 
   get secondaryColor(): string | undefined {
-    return this.secondaryNavbarColor || this.styleService.getInstance().colors?.secondary?.text;
+    return (
+      this.secondaryNavbarColor ||
+      this.styleService.getInstance().colors?.secondary?.text
+    );
   }
 
   get primaryBg() {
-    return this.primaryNavbarBg || this.styleService.getInstance().colors?.primary?.main;
+    return (
+      this.primaryNavbarBg ||
+      this.styleService.getInstance().colors?.primary?.main
+    );
   }
 
   get primaryColor() {
-    return this.primaryNavbarColor || this.styleService.getInstance().colors?.primary?.text;
+    return (
+      this.primaryNavbarColor ||
+      this.styleService.getInstance().colors?.primary?.text
+    );
   }
 
   toggle() {
     this.drawerService.toggle();
+  }
+
+  onResize(event: any) {
+    if (this.show === true) {
+      this.drawerService.hide();
+    }
   }
 }
 

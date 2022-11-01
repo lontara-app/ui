@@ -1,30 +1,62 @@
-<div [class]="'lontara-ui-navbar ' + class" [style]="'background:' + primaryBg + ';color:' + primaryColor">
-    <div class="navbar-wrapper-primary">
-        <div class="navbar-container">
-            <div class="navbar-left">
-                <ng-content select="[left]"></ng-content>
-            </div>
-            <div class="navbar-middle">
-                <ng-content select="[middle]"></ng-content>
-            </div>
-            <div class="navbar-right">
-                <ng-content select="[right]"></ng-content>
-            </div>
-        </div>
+<div
+  [class]="'lontara-ui-navbar ' + class"
+  [style]="'background:' + primaryBg + ';color:' + primaryColor"
+>
+  <!-- primary navbar -->
+  <div class="navbar-wrapper-primary">
+    <div class="navbar-container">
+      <div class="navbar-left">
+        <button
+          *ngIf="enableDrawer"
+          class="navbar-drawer-button"
+          (click)="toggle()"
+        >
+          <svg
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <div class="navbar-left">
+        <ng-content select="[left]"></ng-content>
+      </div>
+      <div class="navbar-middle">
+        <ng-content select="[middle]"></ng-content>
+      </div>
+      <div class="navbar-right">
+        <ng-content select="[right]"></ng-content>
+      </div>
     </div>
-    <div *ngIf="secondaryNavbar" class="navbar-wrapper-secondary" [style]="'background:' + secondaryBg + ';color:' + secondaryColor">
-        <div class="navbar-container secondary">
-            <div class="navbar-left">
-                <button *ngIf="enableDrawer" class="navbar-drawer-button" (click)="toggle()">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                </button>
-            </div>
-            <div class="navbar-middle">
-                <ng-content select="[secondary-menu]"></ng-content>
-            </div>
-            <div *ngIf="show" class="lontara-ui-navbar-content">
-                <ng-content select="[drawer-content]"></ng-content>
-            </div>
-        </div>
+
+    <!-- drawer sidebar -->
+    <div *ngIf="show" class="lontara-ui-navbar-content">
+      <ng-content select="[drawer-content]"></ng-content>
     </div>
+    <!-- drawer sidebar ends here -->
+  </div>
+  <!-- primary navbar ends here -->
+
+  <!-- secondary navbar -->
+  <div
+    *ngIf="secondaryNavbar"
+    (window:resize)="onResize($event)"
+    class="navbar-wrapper-secondary"
+    [style]="'background:' + secondaryBg + ';color:' + secondaryColor"
+  >
+    <div class="navbar-container secondary">
+      <div class="navbar-middle">
+        <ng-content select="[secondary-menu]"></ng-content>
+      </div>
+    </div>
+  </div>
+  <!-- secondary navbar ends here -->
 </div>
