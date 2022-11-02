@@ -10,7 +10,9 @@ import * as _ from 'lodash';
   imports: [CommonModule],
 })
 export class LontaraUiModule {
-  public static forRoot(customStyle?: LontaraConfiguration): ModuleWithProviders<LontaraUiModule> {
+  public static forRoot(
+    customStyle?: LontaraConfiguration
+  ): ModuleWithProviders<LontaraUiModule> {
     const additionalStyle = customStyle || {};
     const styles = _.merge(DefaultStyles, additionalStyle);
     return {
@@ -19,10 +21,10 @@ export class LontaraUiModule {
         LontaraStyleService,
         LontaraUploadService,
         {
-            provide: 'styles',
-            useValue: styles
-        }
-      ]
-  };
+          provide: 'styles',
+          useValue: styles,
+        },
+      ],
+    };
   }
 }
