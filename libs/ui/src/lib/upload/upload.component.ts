@@ -21,10 +21,14 @@ export class UploadComponent implements OnInit {
   @Input() onSuccess: any;
   @Input() onError: any;
   @Input() label = '';
+  @Input() apiUrl = '';
   public fileUploadControl = new FileUploadControl(undefined, FileUploadValidators.filesLimit(1));
   public isUploading = false;
   public progress = 0;
   ngOnInit(): void {
+    if (this.apiUrl) {
+      this.uploadSservice.setApiUrl(this.apiUrl);
+    }
     this.fileUploadControl.valueChanges.subscribe(() => {
       const file = this.fileUploadControl.value;
       if (file.length > 0) {
