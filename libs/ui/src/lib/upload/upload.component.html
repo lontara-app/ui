@@ -3,5 +3,14 @@
     [ngModelOptions]="{standalone: true}"
     [multiple]="false"
     [control]="fileUploadControl">
-    <ng-content></ng-content>
+    <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
+        <file-upload-drop-zone>
+            <ng-container *ngIf="isFileDragDropAvailable; else isNotDragDropAvailable">
+                <b>Seret dan letakkan</b> file<br> atau ketuk disini untuk mengunggah
+            </ng-container>
+            <ng-template #isNotDragDropAvailable>
+                <b>Ketuk disini</b> untuk<br> mengunggah file
+            </ng-template>
+        </file-upload-drop-zone>
+      </ng-template>
 </file-upload>
