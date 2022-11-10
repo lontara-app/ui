@@ -3,4 +3,23 @@
     [ngModelOptions]="{standalone: true}"
     [multiple]="false"
     [control]="fileUploadControl">
+    <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
+        <file-upload-drop-zone>
+            <ng-container *ngIf="isFileDragDropAvailable; else isNotDragDropAvailable">
+                <b>Seret dan letakkan</b> file<br> atau ketuk disini untuk mengunggah
+            </ng-container>
+            <ng-template #isNotDragDropAvailable>
+                <b>Ketuk disini</b> untuk<br> mengunggah file
+            </ng-template>
+        </file-upload-drop-zone>
+    </ng-template>
+
+    <!-- <ng-template let-i="index" let-file="file" let-control="control" #item>
+        <div class="overlay">
+            <span class="delete-button" (click)="control.removeFile(file)">
+                <svg>...</svg>
+            </span>
+            <img *ngIf="control.valid" [src]="uploadedFile | async">
+        </div>
+    </ng-template> -->
 </file-upload>
