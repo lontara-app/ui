@@ -22,6 +22,8 @@ export class UploadComponent implements OnInit {
   @Input() onError: any;
   @Input() label = '';
   @Input() apiUrl = '';
+  @Input() uploadFileType = 'file';
+
   public fileUploadControl = new FileUploadControl(undefined, FileUploadValidators.filesLimit(1));
   public isUploading = false;
   public progress = 0;
