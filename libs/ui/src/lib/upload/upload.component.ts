@@ -1,13 +1,21 @@
-import { Component, OnInit, NgModule, Input, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  NgModule,
+  Input,
+  CUSTOM_ELEMENTS_SCHEMA,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { FileUploadControl, FileUploadValidators } from '@iplab/ngx-file-upload';
+import {
+  FileUploadControl,
+  FileUploadValidators,
+} from '@iplab/ngx-file-upload';
 import { LontaraUploadService } from '../lontara-upload.service';
 import { HttpClientModule, HttpEventType } from '@angular/common/http';
-
 
 @Component({
   selector: 'lontara-upload',
@@ -15,13 +23,14 @@ import { HttpClientModule, HttpEventType } from '@angular/common/http';
   styleUrls: ['./upload.component.css'],
 })
 export class UploadComponent implements OnInit {
-  constructor(
-    private uploadSservice: LontaraUploadService,
-  ) {}
+  constructor(private uploadSservice: LontaraUploadService) {}
   @Input() onSuccess: any;
   @Input() onError: any;
   @Input() label = '';
-  public fileUploadControl = new FileUploadControl(undefined, FileUploadValidators.filesLimit(1));
+  public fileUploadControl = new FileUploadControl(
+    undefined,
+    FileUploadValidators.filesLimit(1)
+  );
   public isUploading = false;
   public progress = 0;
   ngOnInit(): void {
@@ -66,9 +75,17 @@ export class UploadComponent implements OnInit {
 }
 
 @NgModule({
-  imports: [HttpClientModule, CommonModule, BrowserAnimationsModule, BrowserModule, FormsModule, ReactiveFormsModule, FileUploadModule],
+  imports: [
+    HttpClientModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FileUploadModule,
+  ],
   declarations: [UploadComponent],
   exports: [UploadComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class UploadComponentModule {}
