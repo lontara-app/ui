@@ -4,22 +4,32 @@
     [multiple]="false"
     [control]="fileUploadControl">
     <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
-        <file-upload-drop-zone>
-            <ng-container *ngIf="isFileDragDropAvailable; else isNotDragDropAvailable">
-                <b>Seret dan letakkan</b> file<br> atau ketuk disini untuk mengunggah
-            </ng-container>
-            <ng-template #isNotDragDropAvailable>
-                <b>Ketuk disini</b> untuk<br> mengunggah file
-            </ng-template>
-        </file-upload-drop-zone>
-    </ng-template>
-
-    <!-- <ng-template let-i="index" let-file="file" let-control="control" #item>
-        <div class="overlay">
-            <span class="delete-button" (click)="control.removeFile(file)">
-                <svg>...</svg>
-            </span>
-            <img *ngIf="control.valid" [src]="uploadedFile | async">
+        <div *ngIf="uploadFileType === 'image'">
+            <div class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />   
+                </svg>            
+            </div>
+            <div class="upload-text">
+                <ng-container *ngIf="isFileDragDropAvailable; else isNotDragDropAvailable">
+                    <b>Seret dan letakkan</b> gambar/foto<br> atau ketuk disini untuk mengunggah
+                </ng-container>
+                <ng-template #isNotDragDropAvailable>
+                    <b>Ketuk disini</b> untuk<br> mengunggah
+                </ng-template>
+            </div>
         </div>
-    </ng-template> -->
+        
+        <div *ngIf="uploadFileType === 'file'">
+            <file-upload-drop-zone>
+                <ng-container *ngIf="isFileDragDropAvailable; else isNotDragDropAvailable">
+                    <b>Seret dan letakkan</b> berkas anda<br> atau ketuk disini untuk mengunggah
+                </ng-container>
+                <ng-template #isNotDragDropAvailable>
+                    <b>Ketuk disini</b> untuk<br> mengunggah
+                </ng-template>
+            </file-upload-drop-zone>
+        </div>
+        
+    </ng-template>
 </file-upload>

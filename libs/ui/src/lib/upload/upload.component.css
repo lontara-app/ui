@@ -3,3 +3,14 @@
     font-size: 0.875rem;
     padding-bottom: 0.5rem;
 }
+
+svg {
+    fill: #909293;
+    height: 32px;
+}
+
+.upload-text {
+    overflow: hidden;
+    width: auto;
+    font-size: 14px;
+}
