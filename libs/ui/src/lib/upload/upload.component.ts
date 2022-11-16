@@ -23,13 +23,19 @@ export class UploadComponent implements OnInit {
   @Input() label = '';
   @Input() apiUrl = '';
   @Input() uploadFileType = 'file';
+  @Input() initialImage = '';
 
   public fileUploadControl = new FileUploadControl(undefined, FileUploadValidators.filesLimit(1));
   public isUploading = false;
   public progress = 0;
+  public uploaded = false;
+  public preview = '';
   ngOnInit(): void {
     if (this.apiUrl) {
       this.uploadSservice.setApiUrl(this.apiUrl);
+    }
+    if (this.initialImage) {
+      this.preview = this.initialImage;
     }
     this.fileUploadControl.valueChanges.subscribe(() => {
       const file = this.fileUploadControl.value;
@@ -45,6 +51,7 @@ export class UploadComponent implements OnInit {
                 this.fileUploadControl.clear();
                 this.progress = 0;
                 this.isUploading = false;
+                this.uploaded = false;
                 if (this.onError) {
                   this.onError('Failed while trying to upload to our server');
                 }
@@ -57,11 +64,13 @@ export class UploadComponent implements OnInit {
               break;
             case HttpEventType.Response:
               if (event.ok) {
-                const res = event.body;
+                const res: any = event.body;
                 if (this.onSuccess) {
                   this.onSuccess(res);
                 }
                 this.isUploading = false;
+                this.uploaded = true;
+                this.preview = res.url;
               }
               this.progress = 0;
           }
