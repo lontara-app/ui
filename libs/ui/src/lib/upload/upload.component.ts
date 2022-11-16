@@ -97,7 +97,7 @@ export class UploadComponent implements OnInit, OnDestroy {
     private getImage(file: File): void {
         if (FileReader && file) {
             const fr = new FileReader();
-            fr.onload = (e) => this.preview.next(e.target.result);
+            fr.onload = (e: any) => this.preview.next(e.target.result);
             fr.readAsDataURL(file);
         } else {
             this.preview.next('');
