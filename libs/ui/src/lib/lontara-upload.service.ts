@@ -17,11 +17,15 @@ export class LontaraUploadService {
     private styles: LontaraConfiguration
     ) {}
 
+  apiUrl = '';
+  setApiUrl(url: string) {
+    this.apiUrl = url;
+  }
   upload(file: File): Observable<HttpEvent<UploadResponseModel>> {
       const formData: FormData = new FormData();
       formData.append('file', file, file.name);
       return this.httpClient
-        .post<UploadResponseModel>(`${this.styles.uploadApiUrl}`, formData, {
+        .post<UploadResponseModel>(`${this.apiUrl || this.styles.uploadApiUrl}`, formData, {
           headers: {},
           reportProgress: true,
           observe: 'events',
