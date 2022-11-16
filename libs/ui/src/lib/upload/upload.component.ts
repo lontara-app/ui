@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule, Input, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, OnInit, NgModule, Input, CUSTOM_ELEMENTS_SCHEMA, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FileUploadControl, FileUploadValidators } from '@iplab/ngx-file-upload';
 import { LontaraUploadService } from '../lontara-upload.service';
 import { HttpClientModule, HttpEventType } from '@angular/common/http';
+import {BehaviorSubject, Subscription} from 'rxjs';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { HttpClientModule, HttpEventType } from '@angular/common/http';
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css'],
 })
-export class UploadComponent implements OnInit {
+export class UploadComponent implements OnInit, OnDestroy {
   constructor(
     private uploadSservice: LontaraUploadService,
   ) {}
@@ -26,16 +27,25 @@ export class UploadComponent implements OnInit {
   @Input() initialImage = '';
 
   public fileUploadControl = new FileUploadControl(undefined, FileUploadValidators.filesLimit(1));
+  private subscription: Subscription | undefined;
   public isUploading = false;
   public progress = 0;
   public uploaded = false;
-  public preview = '';
+  public readonly preview: BehaviorSubject<string> = new BehaviorSubject('');
+
+  get isUploaded() {
+    if (this.fileUploadControl.size === 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   ngOnInit(): void {
     if (this.apiUrl) {
       this.uploadSservice.setApiUrl(this.apiUrl);
     }
     if (this.initialImage) {
-      this.preview = this.initialImage;
+      this.preview.next(this.initialImage);
     }
     this.fileUploadControl.valueChanges.subscribe(() => {
       const file = this.fileUploadControl.value;
@@ -70,14 +80,29 @@ export class UploadComponent implements OnInit {
                 }
                 this.isUploading = false;
                 this.uploaded = true;
-                this.preview = res.url;
               }
               this.progress = 0;
           }
         });
       }
     });
+
+    this.subscription = this.fileUploadControl.valueChanges.subscribe((values: Array<File>) => this.getImage(values[0]));
   }
+
+  public ngOnDestroy(): void {
+        this.subscription?.unsubscribe();
+    }
+
+    private getImage(file: File): void {
+        if (FileReader && file) {
+            const fr = new FileReader();
+            fr.onload = (e) => this.preview.next(e.target.result);
+            fr.readAsDataURL(file);
+        } else {
+            this.preview.next('');
+        }
+    }
 }
 
 @NgModule({

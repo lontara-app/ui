@@ -3,11 +3,8 @@
     [ngModelOptions]="{standalone: true}"
     [multiple]="false"
     [control]="fileUploadControl">
-    <div *ngIf="uploadFileType === 'image' && preview !== ''" style="padding: 32px;">
-        <img [src]="preview" style="max-width: 100%; max-height: 100%; width: 200px; height: auto"/>
-    </div>
     <ng-template let-isFileDragDropAvailable="isFileDragDropAvailable" #placeholder>
-        <div *ngIf="uploadFileType === 'image'">
+        <div *ngIf="uploadFileType === 'image' && !isUploaded">
             <div class="icon">
                 <svg viewBox="0 0 24 24">
                     <path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />   
@@ -23,7 +20,7 @@
             </div>
         </div>
         
-        <div *ngIf="uploadFileType === 'file'">
+        <div *ngIf="uploadFileType === 'file' && !isUploaded">
             <file-upload-drop-zone>
                 <ng-container *ngIf="isFileDragDropAvailable; else isNotDragDropAvailable">
                     <b>Seret dan letakkan</b> berkas anda<br> atau ketuk disini untuk mengunggah
@@ -34,5 +31,20 @@
             </file-upload-drop-zone>
         </div>
         
+    </ng-template>
+    <ng-template let-i="index" let-file="file" let-control="fileUploadControl" #item>
+        <div style="display: flex;flex-direction: row;align-items: center;justify-content: center;" *ngIf="uploadFileType === 'image'">
+            <img [src]="preview" style="max-width: 100%;margin: auto;border-radius: 12px;">
+            <div (click)="fileUploadControl.removeFile(file)" style="display: flex; flex-direction: row; align-items: center; justify-content: center;cursor: pointer;">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                <span style="padding-left: 8px;">Hapus</span>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: row;align-items: center;justify-content: space-between;" *ngIf="uploadFileType === 'file'">
+            <span>{{file.name}}</span>
+            <span (click)="fileUploadControl.removeFile(file)" style="cursor:pointer;">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+            </span>
+        </div>
     </ng-template>
 </file-upload>
